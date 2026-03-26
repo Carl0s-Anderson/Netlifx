@@ -1,0 +1,175 @@
+﻿/* Estilo inspirado na Netflix */
+/* Reset básico para evitar discrepâncias entre navegadores */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Força altura completa para permitir background de tela inteira */
+html,
+body {
+  min-height: 100%;
+}
+
+/* Cor de fundo e centralização do conteúdo */
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #ffffff;
+  background: radial-gradient(circle at top, #2d0037 0%, #0f0209 40%, #000 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Painel principal com borda arredondada e sombra */
+main {
+  max-width: 850px;
+  width: 100%;
+  padding: 2rem;
+}
+
+/* Título em destaque com cor Netflix */
+header {
+  position: relative;
+}
+
+header h1 {
+  color: #e50914;
+  font-size: clamp(1.6rem, 5vw, 3rem);
+  text-align: center;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+}
+
+#theme-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.light-mode #theme-toggle {
+  background: rgba(0, 0, 0, 0.1);
+  color: #000000;
+}
+
+/* Grid responsivo para os cards de perfil */
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  justify-items: center;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 1.25rem;
+  justify-content: center;
+}
+
+ol {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Estilo do card do perfil com efeito hover */
+.perfil {
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  padding: 0.85rem;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Estado hover/focus para feedback visual */
+.perfil:hover,
+.perfil:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(229, 9, 20, 0.25);
+  border-color: #e50914;
+}
+
+/* Imagem com borda leve e cantos arredondados */
+.perfil img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Nome do perfil abaixo da imagem */
+.perfil p {
+  margin-top: 0.75rem;
+  font-size: 1rem;
+}
+
+/* Estilos para light mode */
+.light-mode {
+  color: #000000;
+  background: linear-gradient(to bottom, #ffffff 0%, #f0f0f0 40%, #e0e0e0 100%);
+}
+
+.light-mode header h1 {
+  color: #e50914;
+}
+
+.light-mode .perfil {
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .perfil:hover,
+.light-mode .perfil:focus-within {
+  box-shadow: 0 8px 30px rgba(229, 9, 20, 0.15);
+}
+
+.light-mode .perfil img {
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Ajustes para telas pequenas */
+@media (max-width: 500px) {
+  body {
+    padding: 1rem;
+  }
+
+  main {
+    padding: 1rem;
+  }
+
+  .perfil {
+    padding: 0.75rem;
+  }
+  ul{
+    flex-direction: column;
+    gap: 6rem;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
