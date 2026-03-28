@@ -1,175 +1,184 @@
-﻿/* Estilo inspirado na Netflix */
-/* Reset básico para evitar discrepâncias entre navegadores */
+﻿/* Reset básico para evitar discrepâncias entre navegadores */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Força altura completa para permitir background de tela inteira */
-html,
-body {
-  min-height: 100%;
-}
-
-/* Cor de fundo e centralização do conteúdo */
-body {
+html, body {
+  min-height: 100vh;
+  /* Netflix usa um cinza muito escuro, não um preto puro */
+  background-color: #141414; 
+  color: #fff;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #ffffff;
-  background: radial-gradient(circle at top, #2d0037 0%, #0f0209 40%, #000 100%);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  padding: 2rem;
+  justify-content: center;
 }
 
-/* Painel principal com borda arredondada e sombra */
+/* Painel principal com animação suave de entrada */
 main {
-  max-width: 850px;
+  text-align: center;
   width: 100%;
   padding: 2rem;
+  animation: fadeIn 0.4s ease-in;
 }
 
-/* Título em destaque com cor Netflix */
-header {
-  position: relative;
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(1.05); }
+  to { opacity: 1; transform: scale(1); }
 }
 
+/* Título em destaque (A Netflix usa a cor branca aqui) */
 header h1 {
-  color: #e50914;
-  font-size: clamp(1.6rem, 5vw, 3rem);
-  text-align: center;
-  letter-spacing: 1px;
-  margin-bottom: 1.5rem;
-}
-
-#theme-toggle {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  border: none;
-  padding: 0.5rem;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1.5rem;
-}
-
-.light-mode #theme-toggle {
-  background: rgba(0, 0, 0, 0.1);
-  color: #000000;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 400;
+  margin-bottom: 2rem;
+  color: #fff; 
 }
 
 /* Grid responsivo para os cards de perfil */
 .container {
   display: flex;
-  justify-content: center;
-  gap: 1.25rem;
-  justify-items: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-ul {
-  display: flex;
+.perfis-list {
   list-style: none;
-  padding: 0;
-  margin: 0;
-  gap: 1.25rem;
-  justify-content: center;
-}
-
-ol {
   display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  gap: 2vw;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
 }
 
-/* Estilo do card do perfil com efeito hover */
-.perfil {
+/* Estilo do link do perfil */
+.perfil a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: grey; /* O texto padrão é cinza */
+  transition: color 0.2s ease;
+  width: clamp(100px, 12vw, 150px);
+}
+
+/* O "segredo" do visual da Netflix: uma borda invisível que aparece no hover */
+.avatar-wrapper {
   width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 3px solid transparent; 
+  transition: border-color 0.2s ease;
+  margin-bottom: 0.8rem;
+}
+
+.avatar-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nome {
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
   text-align: center;
+}
+
+/* Efeito Hover ao passar o mouse no perfil */
+.perfil a:hover,
+.perfil a:focus {
+  color: #fff; /* O texto fica branco */
+  outline: none;
+}
+
+.perfil a:hover .avatar-wrapper,
+.perfil a:focus .avatar-wrapper {
+  border-color: #fff; /* A borda da imagem fica branca */
+}
+
+/* Botão Gerenciar Perfis */
+#gerenciar-perfis {
+  display: inline-block;
+  background: transparent;
+  color: grey;
+  border: 1px solid grey;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
-  border: 2px solid transparent;
-  border-radius: 14px;
-  padding: 0.85rem;
-  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.2s ease;
 }
 
-/* Estado hover/focus para feedback visual */
-.perfil:hover,
-.perfil:focus-within {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(229, 9, 20, 0.25);
-  border-color: #e50914;
+#gerenciar-perfis:hover,
+#gerenciar-perfis:focus {
+  color: #fff;
+  border-color: #fff;
+  outline: none;
 }
 
-/* Imagem com borda leve e cantos arredondados */
-.perfil img {
-  width: 100%;
-  max-width: 180px;
-  height: auto;
-  border-radius: 12px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+/* Botão de Tema no Canto */
+#theme-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s;
 }
 
-/* Nome do perfil abaixo da imagem */
-.perfil p {
-  margin-top: 0.75rem;
-  font-size: 1rem;
+#theme-toggle:hover {
+  opacity: 1;
 }
 
-/* Estilos para light mode */
+/* Estilos adaptados para o Light Mode (Tema Claro) */
 .light-mode {
-  color: #000000;
-  background: linear-gradient(to bottom, #ffffff 0%, #f0f0f0 40%, #e0e0e0 100%);
+  background-color: #f3f3f3;
+  color: #333;
 }
 
 .light-mode header h1 {
-  color: #e50914;
+  color: #333;
 }
 
-.light-mode .perfil {
-  background: rgba(0, 0, 0, 0.05);
-  border: 2px solid rgba(0, 0, 0, 0.1);
+.light-mode .perfil a {
+  color: #666;
 }
 
-.light-mode .perfil:hover,
-.light-mode .perfil:focus-within {
-  box-shadow: 0 8px 30px rgba(229, 9, 20, 0.15);
+.light-mode .perfil a:hover,
+.light-mode .perfil a:focus {
+  color: #000;
 }
 
-.light-mode .perfil img {
-  border: 2px solid rgba(0, 0, 0, 0.1);
+.light-mode .perfil a:hover .avatar-wrapper,
+.light-mode .perfil a:focus .avatar-wrapper {
+  border-color: #000;
 }
 
-/* Ajustes para telas pequenas */
+.light-mode #gerenciar-perfis {
+  color: #666;
+  border-color: #666;
+}
+
+.light-mode #gerenciar-perfis:hover {
+  color: #000;
+  border-color: #000;
+}
+
+/* Ajustes Mobile */
 @media (max-width: 500px) {
-  body {
-    padding: 1rem;
+  .perfis-list {
+    gap: 1.5rem;
   }
-
-  main {
-    padding: 1rem;
+  
+  .perfil a {
+    width: 120px;
   }
-
-  .perfil {
-    padding: 0.75rem;
-  }
-  ul{
-    flex-direction: column;
-    gap: 6rem;
-  }
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 1.25rem;
-  flex-wrap: wrap;
-  justify-content: center;
-
 }

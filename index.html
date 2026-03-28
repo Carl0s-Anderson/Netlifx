@@ -7,41 +7,53 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <button id="theme-toggle" aria-label="Alternar tema"></button>
+
     <main>
       <header>
         <h1>Quem está assistindo?</h1>
-       
       </header>
+
       <section class="container" aria-label="Perfis de usuário">
-         <button id="theme-toggle"></button>
-        <ul>
-          <li>
-            <ol>
-              <li class="perfil" aria-label="Perfil do Gustavo">
-                <img src="imgs/perfil1_img.png" alt="Foto do perfil de Gustavo" />
-                <p>Gustavo</p>
-              </li>
-            </ol>
+        <ul class="perfis-list">
+          <li class="perfil">
+            <a
+              href="catalogo/catalogo.html"
+              aria-label="Acessar perfil de Gustavo"
+            >
+              <div class="avatar-wrapper">
+                <img
+                  src="imgs/perfil1_img.png"
+                  alt="Foto do perfil de Gustavo"
+                />
+              </div>
+              <span class="nome">Gustavo</span>
+            </a>
           </li>
-          <li>
-            <ol>
-              <li class="perfil" aria-label="Perfil da Maria">
+
+          <li class="perfil">
+            <a href="catalogo/catalogo.html" aria-label="Acessar perfil de Maria">
+              <div class="avatar-wrapper">
                 <img src="imgs/perfil2_img.png" alt="Foto do perfil de Maria" />
-                <p>Maria</p>
-              </li>
-            </ol>
+              </div>
+              <span class="nome">Maria</span>
+            </a>
           </li>
-          <li>
-            <ol>
-              <li class="perfil" aria-label="Perfil do João">
+
+          <li class="perfil">
+            <a href="catalogo/catalogo.html" aria-label="Acessar perfil de João">
+              <div class="avatar-wrapper">
                 <img src="imgs/perfil3_img.png" alt="Foto do perfil de João" />
-                <p>João</p>
-              </li>
-            </ol>
+              </div>
+              <span class="nome">João</span>
+            </a>
           </li>
         </ul>
+
+        <a href="gerenciar.html" id="gerenciar-perfis">Gerenciar perfis</a>
       </section>
     </main>
+
     <script src="script.js"></script>
   </body>
 </html>
